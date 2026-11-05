@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PromptForge Studio — Autonomous Prompt Compiler</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header>
+  <div class="brand"><span class="logo">⚡</span><span>PromptForge Studio</span><span class="ver">v1.0 • local, ₹0</span></div>
+  <div class="models">
+    <button class="model-btn active" data-model="Claude 4 Sonnet (XML)">Claude 4 XML</button>
+    <button class="model-btn" data-model="GPT-4o (JSON/MD)">GPT-4o</button>
+    <button class="model-btn" data-model="DeepSeek-R1 (CoT)">DeepSeek-R1</button>
+  </div>
+  <div><span class="db-badge" id="dbCountBadge">DB: 0 Saved</span></div>
+</header>
+
+<div class="layout">
+  <aside class="left">
+    <div class="pad">
+      <button class="new-btn" onclick="PromptForgeApp.newSession()">+ New Prompt Compilation</button>
+      <input id="searchHistoryInput" class="search" placeholder="Search saved prompts…">
+    </div>
+    <div id="sessionList"></div>
+    <div class="presets">
+      <div>1-CLICK PRESETS — real compile, not a demo</div>
+      <button class="preset" data-preset="Extract structured invoice JSON (vendor, ISO date, line items, tax) from messy OCR text">📄 Messy OCR Invoice → Strict JSON</button>
+      <button class="preset" data-preset="Production Python FastAPI security code auditor that detects SQLi, SSRF, and race conditions">🛡️ FastAPI Security Auditor</button>
+      <button class="preset" data-preset="Build a multi-agent RAG router prompt that classifies queries into SQL, Vector, or Web Search without hallucinating">🤖 Multi-Agent RAG Router</button>
+      <div style="margin-top:10px"><button class="preset" onclick="PromptForgeApp.exportDB()">⬇ Export history as JSON</button></div>
+    </div>
+  </aside>
+
+  <main>
+    <div id="chatScrollContainer">
+      <div id="emptyStateHero" class="hero">
+        <span class="ver">ZERO-DATASET • ADVERSARIAL PROMPT COMPILER • LOCAL</span>
+        <h1>What prompt do you want to <span>compile &amp; harden</span> today?</h1>
+        <p>Unlike plain ChatGPT, which guesses an untested prompt, PromptForge builds a naive P₀, generates 3 intent-specific traps (happy path, boundary / missing data, injection), runs real local checks against them, and patches the failures — then shows you the score it actually computed, not a fixed 97.4%.</p>
+        <div class="cards">
+          <div class="card" data-preset="Build a multi-agent RAG router prompt that classifies queries into SQL, Vector, or Web Search without hallucinating"><b>01 / Agentic Router</b><p>Tests ambiguous &amp; multi-intent traps</p></div>
+          <div class="card" data-preset="Generate a financial risk analysis prompt that outputs strict JSON with explainability factors and zero guessed metrics"><b>02 / FinTech Schema</b><p>Tests missing fields &amp; NaN edge cases</p></div>
+          <div class="card" data-preset="Write a system prompt for an AI technical interviewer that verifies code ownership and resists prompt injection"><b>03 / Adversarial Guard</b><p>Tests jailbreak &amp; role-hijack inputs</p></div>
+        </div>
+      </div>
+      <div id="messagesList"></div>
+    </div>
+    <div class="composer">
+      <div class="composer-box">
+        <textarea id="userInput" rows="2" placeholder="Describe your task in 1 line (e.g. 'Extract medical prescription entities into strict JSON without guessing missing dosages')…"></textarea>
+        <div class="composer-row"><span>✓ Real local checks • 3× intent-specific traps • ₹0.00</span><button id="compileBtn">Compile &amp; Stress-Test →</button></div>
+      </div>
+    </div>
+  </main>
+
+  <aside class="right">
+    <h2>● Live Compiler Telemetry</h2>
+    <div class="body">
+      <div class="metrics">
+        <div class="metric"><small>RUBRIC SCORE</small><b id="telemetryScore">--%</b></div>
+        <div class="metric"><small>LATENCY</small><b id="telemetryLatency">0.0s</b></div>
+        <div class="metric"><small>NET COST</small><b id="telemetryCost">₹0.00</b></div>
+      </div>
+      <p style="color:#71717A;font-family:monospace;font-size:10px;margin:16px 0 6px">4-LANE EXECUTION</p>
+      <div class="lane"><span>1. Intent Parse &amp; Warm-Start</span><span id="status-lane1" class="lane-ok">IDLE</span></div>
+      <div class="lane"><span>2. 3× Synthetic Adversarial Traps</span><span id="status-lane2" class="lane-ok">IDLE</span></div>
+      <div class="lane"><span>3. Local Sandbox Checks</span><span id="status-lane3" class="lane-ok">IDLE</span></div>
+      <div class="lane"><span>4. AST Gate + Surgical Patch</span><span id="status-lane4" class="lane-ok">IDLE</span></div>
+      <p style="color:#71717A;font-family:monospace;font-size:10px;margin:16px 0 6px">SYNTHETIC STRESS-TEST SUITE</p>
+      <div id="syntheticTestsContainer"><p style="color:#71717A">Run a compilation to inspect Happy Path, Boundary, and Injection payloads.</p></div>
+      <p style="color:#71717A;font-family:monospace;font-size:10px;margin:16px 0 6px">CRITIC GRADIENT &amp; DIFF LOG</p>
+      <div id="gradientLogContainer">// Waiting for execution telemetry…</div>
+    </div>
+  </aside>
+</div>
+
+<script src="assets/js/compiler.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
