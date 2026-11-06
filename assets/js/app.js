@@ -6,7 +6,7 @@
   var DB_KEY = 'promptforge_studio_sessions_v1';
   var sessions = [];
   var activeSessionId = null;
-  var currentModel = 'Claude 4 Sonnet (XML)';
+  var currentModel = 'ChatGPT (Paragraph)';
 
   function $(id) { return document.getElementById(id); }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (m) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m]; }); }

@@ -23,7 +23,7 @@ app = FastAPI(title="PromptForge Studio", version="1.0.0")
 
 class CompileRequest(BaseModel):
     intent: str
-    model: str = "Claude 4 Sonnet (XML)"
+    model: str = "ChatGPT (Paragraph)"
 
 
 class CompileResponse(BaseModel):

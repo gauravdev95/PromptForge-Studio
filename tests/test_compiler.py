@@ -51,6 +51,15 @@ def test_model_changes_format():
     assert "Think step by step" in deepseek["p_final"]
 
 
+def test_chatgpt_paragraph_format():
+    r = compile_prompt("Extract invoice JSON from OCR", "ChatGPT (Paragraph)")
+    assert "<system_instructions>" not in r["p_final"]
+    assert "### ROLE" not in r["p_final"]
+    assert "You are a principal domain execution engine" in r["p_final"]
+    assert "never guess" in r["p_final"].lower()
+    assert r["score"] > 90
+
+
 def test_no_guess_rule_present():
     r = compile_prompt("Extract medical prescription entities into strict JSON without guessing missing dosages")
     assert "never guess" in r["p_final"].lower() or "return null" in r["p_final"].lower()
